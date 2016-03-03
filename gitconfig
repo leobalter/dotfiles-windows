@@ -1,0 +1,48 @@
+[user]
+  name = Leonardo Balter
+  email = leonardo.balter@gmail.com
+
+[filter "lfs"]
+  clean = git-lfs clean %f
+  smudge = git-lfs smudge %f
+  required = true
+
+[core]
+  autocrlf = input
+  excludesfile = ~/.gitignore
+
+[color]
+  ui = auto
+  diff = auto
+
+[alias]
+  a    = commit --amend
+  b    = checkout -b
+  c    = commit
+  ca   = commit -a
+  files = diff master --name-status
+  dh   = diff HEAD^
+  dm   = diff master
+  ff   = merge --ff-only
+  lg   = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  lgp  = log -p
+  msg  = commit --allow-empty -m
+  pick = cherry-pick -s
+  remaster = rebase master
+  rei  = rebase -i master
+  sb   = status -sb
+  st   = status
+  top  = git rev-parse HEAD
+  wip  = commit -a -m 'wip'
+  nicelog = log --pretty=nice --graph --date-order --date=short --max-count=15
+
+[push]
+  default = current
+  followTags = true
+
+[github]
+  user = leobalter
+  token = !security 2>&1 >/dev/null find-generic-password -gs github.token | ruby -e 'print $1 if STDIN.gets =~ /^password: \\\"(.*)\\\"$/'
+
+[pretty]
+  nice = "%C(magenta)%h %C(yellow)%ad %C(white)| %C(green)%s%C(red)%d %C(yellow)[%an]"
